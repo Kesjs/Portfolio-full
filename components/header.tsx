@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -18,15 +18,31 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
 
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Click outside to close
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMenuOpen &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMenuOpen]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -82,15 +98,18 @@ export function Header() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="space-y-1 px-4 py-3 bg-background border-t border-border backdrop-blur-sm shadow-md">
+        <div
+          ref={menuRef}
+          className="md:hidden animate-in fade-in slide-in-from-top-2 duration-300"
+        >
+          <div className="space-y-1 px-4 py-3 bg-background text-foreground border-t border-border shadow-md rounded-b-lg">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
                 className={`block py-2 px-3 text-base font-medium rounded-md transition-colors hover:bg-muted ${
                   pathname === item.path
-                    ? "text-primary bg-primary/10"
+                    ? "bg-muted text-primary"
                     : "text-foreground"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
