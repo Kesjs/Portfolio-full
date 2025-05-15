@@ -81,31 +81,23 @@ export function Header() {
       </div>
 
       {/* Mobile menu */}
-      {{isMenuOpen && (
-  <div className="md:hidden">
-    <div className="space-y-1 px-4 py-3 bg-background border-t border-border backdrop-blur-sm shadow-md">
-      {navItems.map((item) => (
-        <Link
-          key={item.path}
-          href={item.path}
-          className={`block py-2 px-3 text-base font-medium rounded-md transition-colors hover:bg-muted ${
-            pathname === item.path
-              ? "text-primary bg-primary/10"
-              : "text-foreground"
-          }`}
-          onClick={() => setIsMenuOpen(false)}
-        >
-          {item.name}
-        </Link>
-      ))}
-      <div className="pt-2 pb-1">
-        <Button className="w-full" onClick={() => setIsMenuOpen(false)}>
-          Contactez-nous
-        </Button>
-      </div>
-    </div>
-  </div>
-)}
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="space-y-1 px-4 py-3 bg-background border-t border-border backdrop-blur-sm shadow-md">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`block py-2 px-3 text-base font-medium rounded-md transition-colors hover:bg-muted ${
+                  pathname === item.path
+                    ? "text-primary bg-primary/10"
+                    : "text-foreground"
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
             <div className="pt-2 pb-1">
               <Button className="w-full" onClick={() => setIsMenuOpen(false)}>
                 Contactez-nous
