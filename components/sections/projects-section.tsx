@@ -21,24 +21,27 @@ interface Project {
 }
 
 const projects: Project[] = [
+  // Ajoute tes projets ici
   {
     id: "project-1",
-    title: "Application de suivi de fitness",
-    description: "Une application mobile permettant aux utilisateurs de suivre leurs entraînements et de visualiser leurs progrès au fil du temps.",
-    imageUrl: "https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Application de finance",
+    description: "Suivez facilement vos dépenses et investissements grâce à cette application mobile intuitive, qui vous aide à gérer votre budget au quotidien.",
+    imageUrl: "/images/f.png", // chemin local vers ton image
     category: "mobile",
-    tags: ["React Native", "Firebase", "UI/UX"],
-    link: "/projets/fitness-app",
+    tags: ["React", "Node Js", "Mysql"],
+    link: "https://service-pret.vercel.app",
   },
   {
     id: "project-2",
-    title: "Plateforme e-commerce",
-    description: "Une boutique en ligne complète avec panier, paiement et gestion des commandes pour une marque de vêtements.",
-    imageUrl: "https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Plateforme Cooking Recipe",
+    description: "Découvrez et partagez des recettes gourmandes avec cette boutique en ligne qui offre une expérience complète, de la commande au paiement sécurisé.",
+    imageUrl: "/images/c.png", // chemin local vers ton image
     category: "web",
-    tags: ["React", "Node.js", "Stripe"],
-    link: "/projets/ecommerce",
+    tags: ["React", "Laravel", "Mysql"],
+    link: "https://greenyellow-lyrebird-238560.hostingersite.com/",
   },
+
+
   {
     id: "project-3",
     title: "Dashboard analytique",
